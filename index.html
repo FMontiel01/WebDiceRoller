@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Monopoly Dice Roller</title>
+	<link rel="stylesheet" href="styles.css" />
+</head>
+
+<body onload="initializeApp()">
+	<main class="container">
+		<header class="header">
+			<h1>Monopoly Dice Roller</h1>
+			<p class="subtitle">
+				Roll two dice to determine how many spaces to move.
+				The <strong>Roll Dice</strong> button is focused — press <strong>Enter</strong> to roll again.
+			</p>
+		</header>
+
+		<section class="card" aria-label="Instructions">
+			<h2>Instructions</h2>
+			<ol>
+				<li>This tool rolls <strong>two 6-sided dice</strong> for Monopoly (values 1–6).</li>
+				<li>The dice roll automatically when the page loads.</li>
+				<li>Press <strong>Enter</strong> or click <strong>Roll Dice</strong> to roll again.</li>
+				<li>If you roll a <strong>double</strong>, your doubles streak increases.</li>
+				<li>On <strong>3 doubles in a row</strong>, the app indicates “Go to Jail”.</li>
+				<li>Click <strong>Reset Turn</strong> to clear the doubles streak (start a new turn).</li>
+			</ol>
+		</section>
+
+		<section class="card" aria-label="Results">
+			<h2>Results</h2>
+
+			<div class="grid">
+				<div class="field">
+					<label for="die1">Die 1</label>
+					<input id="die1" class="num" type="text" readonly value="" />
+				</div>
+
+				<div class="field">
+					<label for="die2">Die 2</label>
+					<input id="die2" class="num" type="text" readonly value="" />
+				</div>
+
+				<div class="field">
+					<label for="move">Spaces to Move (Sum)</label>
+					<input id="move" class="num" type="text" readonly value="" />
+				</div>
+
+				<div class="field">
+					<label for="isDouble">Double?</label>
+					<input id="isDouble" class="num" type="text" readonly value="" />
+				</div>
+
+				<div class="field">
+					<label for="doublesStreak">Doubles in a Row</label>
+					<input id="doublesStreak" class="num" type="text" readonly value="0" />
+				</div>
+
+				<div class="field span-2">
+					<label for="note">Note</label>
+					<input id="note" class="num" type="text" readonly value="" />
+				</div>
+			</div>
+
+			<div class="actions">
+				<button id="rollBtn" type="button" autofocus>Roll Dice</button>
+				<button id="resetBtn" type="button" class="secondary">Reset Turn</button>
+				<button id="clearBtn" type="button" class="secondary">Clear</button>
+			</div>
+
+			<p class="hint" id="status" aria-live="polite"></p>
+		</section>
+
+		<footer class="footer">
+			<p>Note: This app focuses on dice rolling (not full Monopoly gameplay).</p>
+		</footer>
+	</main>
+
+	<script src="script.js"></script>
+</body>
+</html>

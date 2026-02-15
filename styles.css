@@ -1,0 +1,212 @@
+:root {
+	/* “Board” + paper look */
+	--bg: #f6f1e6;            /* warm board/cream */
+	--paper: #fffaf0;         /* paper card */
+	--border: #d9cdb7;        /* board outline */
+
+	/* Text */
+	--text: #1f1f1f;
+	--muted: #5a5a5a;
+
+	/* Monopoly-inspired accents (generic board colors) */
+	--go-red: #c62828;        /* GO / red accent */
+	--money-green: #1b8f4e;   /* money green */
+	--chance-orange: #f08a24; /* Chance-ish orange */
+	--chest-blue: #1f6feb;    /* Community-ish blue */
+	--railroad: #111111;      /* railroad black */
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+	color: var(--text);
+
+	/* Board-game background with subtle corner color vibes */
+	background:
+		radial-gradient(900px 540px at 12% 10%, rgba(31, 111, 235, 0.10), transparent 60%),
+		radial-gradient(900px 540px at 88% 14%, rgba(240, 138, 36, 0.10), transparent 60%),
+		radial-gradient(1100px 650px at 50% 110%, rgba(27, 143, 78, 0.10), transparent 60%),
+		linear-gradient(180deg, rgba(0, 0, 0, 0.03), transparent 35%),
+		var(--bg);
+}
+
+.container {
+	max-width: 920px;
+	margin: 0 auto;
+	padding: 28px 16px 48px;
+}
+
+/* Header feels like a title plate */
+.header {
+	padding: 18px 18px 14px;
+	border-radius: 16px;
+	background: linear-gradient(135deg, rgba(198, 40, 40, 0.14), rgba(27, 143, 78, 0.10));
+	border: 2px solid rgba(0, 0, 0, 0.08);
+	box-shadow: 0 10px 18px rgba(0, 0, 0, 0.08);
+}
+
+.header h1 {
+	margin: 0 0 6px;
+	font-size: 2rem;
+	letter-spacing: 0.4px;
+	text-transform: uppercase;
+}
+
+.subtitle {
+	margin: 0;
+	color: var(--muted);
+	line-height: 1.4;
+}
+
+/* Cards look like paper on a board */
+.card {
+	margin-top: 18px;
+	padding: 18px;
+	background: var(--paper);
+	border: 2px solid var(--border);
+	border-radius: 16px;
+	box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+	position: relative;
+	overflow: hidden;
+}
+
+/* A thin “property stripe” across the top of each card */
+.card::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 10px;
+	width: 100%;
+	background: linear-gradient(
+		90deg,
+		var(--go-red),
+		var(--chance-orange),
+		var(--money-green),
+		var(--chest-blue)
+	);
+}
+
+.card h2 {
+	margin: 6px 0 10px; /* small space under stripe */
+	font-size: 1.1rem;
+	letter-spacing: 0.2px;
+}
+
+ol {
+	margin: 0;
+	padding-left: 18px;
+	color: var(--muted);
+	line-height: 1.55;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 12px;
+	margin-top: 12px;
+}
+
+@media (max-width: 720px) {
+	.grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+.field label {
+	display: block;
+	font-size: 0.9rem;
+	color: var(--muted);
+	margin-bottom: 6px;
+}
+
+.field input {
+	width: 100%;
+	padding: 10px 12px;
+	border-radius: 12px;
+	border: 2px solid rgba(0, 0, 0, 0.12);
+	background: #ffffff;
+	color: var(--text);
+	outline: none;
+	box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.04);
+}
+
+.field input:focus {
+	border-color: rgba(27, 143, 78, 0.65);
+	box-shadow: 0 0 0 4px rgba(27, 143, 78, 0.16);
+}
+
+/* Requirement: numbers right-justified */
+.num {
+	text-align: right;
+	font-variant-numeric: tabular-nums;
+}
+
+.span-2 {
+	grid-column: span 2;
+}
+
+.actions {
+	display: flex;
+	gap: 10px;
+	margin-top: 14px;
+	flex-wrap: wrap;
+}
+
+/* Main button feels like a “GO” / action button */
+button {
+	border: none;
+	border-radius: 14px;
+	padding: 10px 16px;
+	font-weight: 800;
+	letter-spacing: 0.2px;
+	text-transform: uppercase;
+	color: #ffffff;
+	background: linear-gradient(135deg, var(--go-red), #ff4b4b);
+	cursor: pointer;
+	box-shadow: 0 10px 18px rgba(198, 40, 40, 0.18);
+}
+
+button:hover {
+	filter: brightness(1.02);
+}
+
+button:active {
+	transform: translateY(1px);
+}
+
+button.secondary {
+	background: #ffffff;
+	color: var(--railroad);
+	border: 2px solid rgba(0, 0, 0, 0.22);
+	box-shadow: none;
+}
+
+button.secondary:hover {
+	background: rgba(0, 0, 0, 0.03);
+}
+
+button:focus {
+	outline: none;
+	box-shadow: 0 0 0 5px rgba(31, 111, 235, 0.18);
+}
+
+/* Status hint */
+.hint {
+	margin: 12px 0 0;
+	color: var(--muted);
+	min-height: 1.2em;
+}
+
+/* Footer feels like small print on a board */
+.footer {
+	margin-top: 18px;
+	color: rgba(0, 0, 0, 0.55);
+	font-size: 0.9rem;
+	padding-top: 10px;
+	border-top: 1px dashed rgba(0, 0, 0, 0.18);
+}
